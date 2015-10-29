@@ -5,7 +5,7 @@ import time
 import numpy as np
 import pylab as plt
 import time
-
+import serial
 class TestGraph(object):
     def __init__(self):
        # ser = serial.Serial('/dev/ttyACM1', 9600) # Establish the connection on a specific port
@@ -36,7 +36,7 @@ class TestGraph(object):
             self.text_file.write('2234\n')
             self.start(i)
         end = time.clock()-start
-        print end
+        
         return end
 
     def loopCSV(self):
@@ -46,21 +46,33 @@ class TestGraph(object):
             
             self.start(i)
         end = time.clock()-start
-        print end
-        return end
-    
         
+        return end
+
 a = TestGraph()
+
 b = a.loopTXT()
 c = a.loopTXT()
 d = a.loopTXT()
-b = (b + c + d)/150
+
+print ''
+print ''
+print "Three results for 50 data points txt"
+print b
+print c
+print d
 print "Results for txt file"
+b = (b + c + d)/150
 print b
 
+print ''
+print "Three results for 50 data points csv"
 b = a.loopCSV()
 c = a.loopCSV()
 d = a.loopCSV()
+print b
+print c
+print d
+print "Results for csv file"
 b = (b + c + d)/150
-print "Results for CSV file"
 print b
